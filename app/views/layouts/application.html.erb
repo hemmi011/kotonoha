@@ -3,17 +3,19 @@
   <head>
     <title><%= content_for(:title) || "Kotonoha" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- スマホなどでWebアプリを扱うための設定 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Kotonoha">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- CSRF対策 -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- このページだけheadに追加したいものなどを追加できる。必要になったページが追加情報を差し込める  -->
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
+    <!-- favicon -->
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
@@ -24,6 +26,8 @@
   </head>
 
   <body>
+    <%= render 'shared/header' %>
     <%= yield %>
+    <%= render 'shared/footer' %>
   </body>
 </html>
