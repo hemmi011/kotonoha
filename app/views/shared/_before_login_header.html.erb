@@ -1,0 +1,163 @@
+<header class="relative h-[90px] overflow-hidden border border-[#dce9df] bg-[#fcfdf9] shadow-sm">
+
+  <!-- 左端の葉っぱ装飾 -->
+  <div class="pointer-events-none absolute -bottom-1 -left-2 opacity-60">
+    <svg
+      width="75"
+      height="85"
+      viewBox="0 0 75 85"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M29 84C31 66 32 49 27 33"
+        stroke="#a9d0ae"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <path
+        d="M28 50C15 47 6 39 4 28C15 28 25 35 28 50Z"
+        fill="#cfe5cf"
+      />
+      <path
+        d="M30 34C27 20 31 9 40 2C46 13 43 25 30 34Z"
+        fill="#b9d9bb"
+      />
+      <path
+        d="M30 65C17 65 9 59 6 50C17 49 26 54 30 65Z"
+        fill="#d9ebd8"
+      />
+    </svg>
+  </div>
+
+  <!-- 右端の葉っぱ装飾 -->
+  <div class="pointer-events-none absolute -bottom-1 -right-2 rotate-180 opacity-60">
+    <svg
+      width="75"
+      height="85"
+      viewBox="0 0 75 85"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M29 84C31 66 32 49 27 33"
+        stroke="#a9d0ae"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <path
+        d="M28 50C15 47 6 39 4 28C15 28 25 35 28 50Z"
+        fill="#cfe5cf"
+      />
+      <path
+        d="M30 34C27 20 31 9 40 2C46 13 43 25 30 34Z"
+        fill="#b9d9bb"
+      />
+      <path
+        d="M30 65C17 65 9 59 6 50C17 49 26 54 30 65Z"
+        fill="#d9ebd8"
+      />
+    </svg>
+  </div>
+
+  <!-- Header本体 -->
+  <div class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-8">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+
+      <!-- 木のロゴ -->
+      <div class="flex h-12 w-12 items-center justify-center">
+        <svg
+          width="46"
+          height="46"
+          viewBox="0 0 46 46"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M23 43V25"
+            stroke="#795c3f"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+          <path
+            d="M23 31L15 24"
+            stroke="#795c3f"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+          <path
+            d="M23 28L31 21"
+            stroke="#795c3f"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+
+          <ellipse
+            cx="14"
+            cy="21"
+            rx="5"
+            ry="8"
+            fill="#5c9b62"
+            transform="rotate(-40 14 21)"
+          />
+          <ellipse
+            cx="31"
+            cy="18"
+            rx="5"
+            ry="8"
+            fill="#6eaa70"
+            transform="rotate(35 31 18)"
+          />
+          <ellipse
+            cx="23"
+            cy="13"
+            rx="5"
+            ry="8"
+            fill="#80b878"
+          />
+          <ellipse
+            cx="15"
+            cy="11"
+            rx="4"
+            ry="6"
+            fill="#4e9259"
+            transform="rotate(-35 15 11)"
+          />
+          <ellipse
+            cx="32"
+            cy="8"
+            rx="4"
+            ry="6"
+            fill="#76ad70"
+            transform="rotate(35 32 8)"
+          />
+        </svg>
+      </div>
+
+      <!-- サイト名 -->
+      <div class="text-[28px] font-semibold tracking-[0.08em] text-[#185b40]">
+        <%= link_to "kotonoha", root_path %>
+      </div>
+
+    </div>
+
+
+    <!-- 右側 -->
+    <div class="ml-auto flex items-center gap-4">
+
+      <!-- ログイン -->
+      <%= link_to "ログイン",
+          login_path,
+          class: "flex h-11 items-center rounded-full border border-[#155b42] px-7 text-sm font-semibold tracking-wide text-[#155b42] transition hover:bg-[#edf5ee]" %>
+
+      <!-- 新規登録 -->
+      <%= link_to "新規登録",
+          new_user_path,
+          class: "flex h-11 items-center rounded-full bg-[#155b42] px-7 text-sm font-semibold tracking-wide text-white shadow-sm transition hover:bg-[#124b37] hover:-translate-y-0.5" %>
+
+    </div>
+
+  </div>
+</header>
