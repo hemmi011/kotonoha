@@ -1,0 +1,15 @@
+<% flash.each do |message_type, message| %>
+  <% if message_type.to_s == "success" %>
+    <div class="mx-auto mt-4 max-w-3xl px-6">
+      <div class="rounded-2xl border border-[#cfe5d5] bg-[#f1f8f2] px-5 py-4 text-sm font-medium text-[#2f6b4a] shadow-sm">
+        <%= message %>
+      </div>
+    </div>
+  <% else %>
+    <div class="mx-auto mt-4 max-w-3xl px-6">
+      <div class="rounded-2xl border border-[#ead5d5] bg-[#fdf4f4] px-5 py-4 text-sm font-medium text-[#9a4f4f] shadow-sm">
+        <%= message %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
