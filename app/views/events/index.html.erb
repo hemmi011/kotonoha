@@ -1,0 +1,33 @@
+<div class="min-h-screen bg-[#fcfdf9] px-6 py-12">
+  <div class="mx-auto max-w-6xl">
+
+    <!-- ページタイトル -->
+    <div class="mb-12 text-center">
+      <h1
+        class="text-3xl font-semibold tracking-wide text-[#205c45] md:text-4xl"
+      >
+        イベント一覧
+      </h1>
+
+      <p
+        class="mt-4 text-sm tracking-wide text-[#7c8d87] md:text-base"
+      >
+        みんなの学びが集まるイベントを見つけよう。
+      </p>
+    </div>
+
+    <!-- イベント一覧 -->
+    <% if @events.present? %>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <%= render @events %>
+      </div>
+    <% else %>
+      <div class="rounded-3xl bg-white px-6 py-16 text-center shadow-sm ring-1 ring-[#e5eee9]">
+        <p class="text-sm text-[#7c8d87]">
+          現在、開催予定のイベントはありません。
+        </p>
+      </div>
+    <% end %>
+
+  </div>
+</div>
