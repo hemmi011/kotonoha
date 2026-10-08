@@ -1,0 +1,72 @@
+<div class="min-h-screen bg-[#fcfdf9] px-6 py-12">
+  <div class="mx-auto max-w-3xl">
+
+    <!-- ページタイトル -->
+    <div class="mb-10 text-center">
+      <h1 class="text-3xl font-semibold tracking-wide text-[#205c45] md:text-4xl">
+        イベントを作成
+      </h1>
+
+      <p class="mt-4 text-sm tracking-wide text-[#7c8d87] md:text-base">
+        みんなで学びを育てるイベントを作ろう。
+      </p>
+    </div>
+
+    <!-- フォームカード -->
+    <div class="rounded-3xl bg-white px-6 py-8 shadow-sm ring-1 ring-[#e5eee9] md:px-10 md:py-10">
+
+      <%= form_with model: @event do |f| %>
+
+        <!-- タイトル -->
+        <div>
+          <%= f.label :title, "イベント名",
+              class: "block text-sm font-semibold tracking-wide text-[#38634f]" %>
+
+          <%= f.text_field :title,
+              placeholder: "例：Railsもくもく会",
+              class: "mt-2 w-full rounded-xl border border-[#dce9df] bg-[#fcfdf9] px-4 py-3 text-sm text-[#3f5149] outline-none transition placeholder:text-[#a8b8b1] focus:border-[#8fbea0] focus:bg-white focus:ring-2 focus:ring-[#dcefe2]" %>
+        </div>
+
+        <!-- 説明 -->
+        <div class="mt-7">
+          <%= f.label :body, "イベントの説明",
+              class: "block text-sm font-semibold tracking-wide text-[#38634f]" %>
+
+          <%= f.text_area :body,
+              rows: 6,
+              placeholder: "イベントの内容や、参加者に伝えたいことを書いてください。",
+              class: "mt-2 w-full resize-none rounded-xl border border-[#dce9df] bg-[#fcfdf9] px-4 py-3 text-sm leading-7 text-[#3f5149] outline-none transition placeholder:text-[#a8b8b1] focus:border-[#8fbea0] focus:bg-white focus:ring-2 focus:ring-[#dcefe2]" %>
+        </div>
+
+        <!-- 開催日時 -->
+        <div class="mt-7">
+          <%= f.label :start_at, "開催日時",
+              class: "block text-sm font-semibold tracking-wide text-[#38634f]" %>
+
+          <%= f.datetime_field :start_at,
+              class: "mt-2 w-full rounded-xl border border-[#dce9df] bg-[#fcfdf9] px-4 py-3 text-sm text-[#3f5149] outline-none transition focus:border-[#8fbea0] focus:bg-white focus:ring-2 focus:ring-[#dcefe2]" %>
+
+          <p class="mt-2 text-xs text-[#8b9a94]">
+            開催する日時を選択してください。
+          </p>
+        </div>
+
+        <!-- 送信ボタン -->
+        <div class="mt-10">
+          <%= f.submit "イベントを作成",
+              class: "w-full rounded-xl bg-[#4f8a68] px-6 py-3.5 text-sm font-semibold tracking-wide text-white shadow-sm transition hover:bg-[#42775a] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#9bc6a8] focus:ring-offset-2" %>
+        </div>
+
+      <% end %>
+
+    </div>
+
+    <!-- 戻る -->
+    <div class="mt-6 text-center">
+      <%= link_to "イベント一覧に戻る",
+          events_path,
+          class: "text-sm font-medium text-[#6f8b7b] transition hover:text-[#38634f]" %>
+    </div>
+
+  </div>
+</div>
