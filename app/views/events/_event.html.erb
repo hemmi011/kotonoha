@@ -102,7 +102,7 @@
         </svg>
 
         <span>
-          <%= event.event_date %>
+            日時
         </span>
       </div>
 
@@ -123,7 +123,7 @@
         </svg>
 
         <span>
-          <%= event.posts.count %>件の投稿
+            ⚪︎件の投稿
         </span>
       </div>
 
@@ -140,7 +140,7 @@
 
     <!-- 詳細への導線 -->
     <div class="mt-6 border-t border-[#edf2ee] pt-5">
-      <%= link_to event_path(event),
+      <%= link_to events_path(event),
           class: "text-sm font-semibold text-[#4d8068] transition hover:text-[#205c45]" do %>
         イベント詳細を見る
         <span class="ml-1 transition group-hover:ml-2">

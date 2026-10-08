@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
     def index
-        @event = Event.includes(:user)
+        @events = Event.all.includes(:user)
     end
 end
