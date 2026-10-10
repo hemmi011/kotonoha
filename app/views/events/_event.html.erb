@@ -102,7 +102,7 @@
         </svg>
 
         <span>
-            日時
+          <%= event.start_at.strftime("%Y/%m/%d (%a) %H:%M") if event.start_at.present? %>
         </span>
       </div>
 
