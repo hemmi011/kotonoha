@@ -1,0 +1,10 @@
+<h1>詳細画面</h1>
+
+<%= @event.title %>
+<%= @event.user.name %>の木
+
+<%= @event.start_at.strftime("%Y/%m/%d (%a) %H:%M") if @event.start_at.present? %>
+
+<p>みんなのひとことでこの木を育てよう</p>
+
+<p>今日学んだこと・気づいたことを一言で</p>
