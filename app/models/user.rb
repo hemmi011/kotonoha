@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
 
     has_many :events, dependent: :destroy
-    has_many :posts, depend: :destroy
+    has_many :posts, dependent: :destroy
 
     def own?(object)
         id == object&.user_id

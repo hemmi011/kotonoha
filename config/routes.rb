@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :events, only: %i[index new create show] do
     resources :posts, only: %i[create edit destroy], shallow: true
+  end
   get 'login',to: 'user_sessions#new'
   post 'login',to: 'user_sessions#create'
   delete 'logout',to: 'user_sessions#destroy'

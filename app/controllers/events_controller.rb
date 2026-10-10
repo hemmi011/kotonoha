@@ -19,6 +19,8 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
+        @post = Post.new
+        @posts = @event.posts.includes(:user).order(created_at: :desc)
     end
 
     private
