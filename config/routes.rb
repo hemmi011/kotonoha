@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
   resources :users, only: %i[new create]
-  resources :events, only: %i[index new create show]
+  resources :events, only: %i[index new create show] do
+    resources :posts, only: %i[create edit destroy], shallow: true
   get 'login',to: 'user_sessions#new'
   post 'login',to: 'user_sessions#create'
   delete 'logout',to: 'user_sessions#destroy'
