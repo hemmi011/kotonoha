@@ -1,0 +1,53 @@
+<%= form_with model: event do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="rounded-3xl border border-[#e5eee7] bg-white p-6 shadow-[0_8px_30px_-12px_rgba(44,83,55,0.12)] sm:p-8 md:p-10">
+
+    <!-- イベント名 -->
+    <div>
+      <%= f.label :title, "イベント名",
+          class: "mb-3 block text-sm font-bold tracking-wide text-[#315b42]" %>
+
+      <%= f.text_field :title,
+          placeholder: "例：Railsもくもく会",
+          class: "w-full rounded-xl border border-[#dce7dc] bg-[#f8faf7] px-4 py-3.5 text-sm text-[#34483a] outline-none transition duration-200 placeholder:text-[#a5b2a5] hover:border-[#bfd3c0] focus:border-[#6d9e79] focus:bg-white focus:ring-4 focus:ring-[#e8f2e8]" %>
+
+      <p class="mt-2 text-xs leading-5 text-[#91a092]">
+        イベントの内容が伝わる名前をつけましょう。
+      </p>
+    </div>
+
+    <!-- イベントの説明 -->
+    <div class="mt-8">
+      <%= f.label :body, "イベントの説明",
+          class: "mb-3 block text-sm font-bold tracking-wide text-[#315b42]" %>
+
+      <%= f.text_area :body,
+          rows: 5,
+          placeholder: "イベントの内容や、参加者に伝えたいことを書いてください。",
+          class: "w-full resize-y rounded-xl border border-[#dce7dc] bg-[#f8faf7] px-4 py-3.5 text-sm leading-7 text-[#34483a] outline-none transition duration-200 placeholder:text-[#a5b2a5] hover:border-[#bfd3c0] focus:border-[#6d9e79] focus:bg-white focus:ring-4 focus:ring-[#e8f2e8]" %>
+    </div>
+
+    <!-- 開催日時 -->
+    <div class="mt-8">
+      <%= f.label :start_at, "開催日時",
+          class: "mb-3 block text-sm font-bold tracking-wide text-[#315b42]" %>
+
+      <%= f.datetime_field :start_at,
+          class: "w-full rounded-xl border border-[#dce7dc] bg-[#f8faf7] px-4 py-3.5 text-sm text-[#34483a] outline-none transition duration-200 hover:border-[#bfd3c0] focus:border-[#6d9e79] focus:bg-white focus:ring-4 focus:ring-[#e8f2e8]" %>
+
+      <p class="mt-2 text-xs leading-5 text-[#91a092]">
+        開催する日時を選択してください。
+      </p>
+    </div>
+
+    <!-- 送信ボタン -->
+    <div class="mt-10">
+      <%= f.submit(
+          event.persisted? ? "イベントを更新" : "イベントを作成",
+          class: "w-full cursor-pointer rounded-xl bg-[#3f7855] px-6 py-4 text-sm font-bold tracking-wide text-white shadow-sm transition duration-200 hover:bg-[#315f43] hover:shadow-md focus:outline-none focus:ring-4 focus:ring-[#dcecdf] active:scale-[0.99]"
+      ) %>
+    </div>
+
+  </div>
+<% end %>
