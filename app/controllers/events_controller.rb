@@ -23,6 +23,10 @@ class EventsController < ApplicationController
         @posts = @event.posts.includes(:user).order(created_at: :desc)
     end
 
+    def edit 
+      @event = current_user.events.find(params[:id])
+    end 
+
     private
 
     def event_params

@@ -64,7 +64,17 @@
 
   <!-- カード内容 -->
   <div class="p-6">
+    <% if current_user.own?(event) %>
+  <div class="ms-auto">
+    <%= link_to "更新", edit_event_path(event) %>
 
+    <%= link_to "削除", event_path(event),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "削除しますか？"
+                } %>
+  </div>
+<% end %>
     <!-- タイトル -->
     <h2
       class="text-lg font-semibold leading-relaxed text-[#285b46]"
