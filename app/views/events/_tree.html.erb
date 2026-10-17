@@ -1,0 +1,216 @@
+
+<%# app/views/events/_tree.html.erb %>
+<%
+  # 樹冠のどこに葉のかたまりを置くか（viewBox 600x520 上の座標）。内側 → 外側の順に茂っていく
+  clusters = [
+    [190, 255], [410, 255], [230, 185], [370, 185], [120, 200],
+    [480, 205], [300, 150], [160, 110], [440, 110], [300, 85]
+  ]
+  full = clusters.size                 # 10件で満開
+  new_after = 10.seconds.ago           # 投稿から10秒以内なら「生えるアニメーション」を付ける
+%>
+
+<div class="tree" role="img" aria-label="投稿数に応じて葉が茂る学びの木">
+  <%# 背景と枝（最初から表示） %>
+  <svg class="tree__scene" viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="tree-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c9e7f6" />
+        <stop offset="1" stop-color="#f1faf4" />
+      </linearGradient>
+    </defs>
+    <rect width="600" height="520" fill="url(#tree-sky)" />
+    <g fill="#fff" opacity="0.75">
+      <ellipse cx="90" cy="60" rx="46" ry="12" />
+      <ellipse cx="125" cy="50" rx="30" ry="10" />
+      <ellipse cx="500" cy="45" rx="50" ry="12" />
+      <ellipse cx="470" cy="36" rx="28" ry="9" />
+    </g>
+    <path d="M0 400 C90 340 170 350 250 385 C340 340 450 330 600 390 L600 520 L0 520 Z" fill="#c4e2dc" />
+    <path d="M0 440 C120 400 240 420 330 440 C430 410 520 410 600 435 L600 520 L0 520 Z" fill="#a9d7a4" />
+    <path d="M0 480 C150 455 300 470 420 478 C500 470 560 468 600 474 L600 520 L0 520 Z" fill="#8fc98a" />
+
+    <%# 幹 %>
+    <path d="M262 500 C282 478 286 430 288 380 C288 345 284 322 278 298 L322 298 C316 322 312 345 312 380 C314 430 318 478 340 500 Z" fill="#8a6a4f" />
+    <%# 枝 %>
+    <g fill="none" stroke="#8a6a4f" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M290 335 C250 305 200 285 150 242" stroke-width="14" />
+      <path d="M310 335 C350 305 400 285 450 242" stroke-width="14" />
+      <path d="M292 312 C270 262 240 222 210 172" stroke-width="12" />
+      <path d="M308 312 C330 262 360 222 390 172" stroke-width="12" />
+      <path d="M300 302 C298 250 300 190 300 118" stroke-width="12" />
+      <path d="M150 242 C130 222 110 202 90 172" stroke-width="6" />
+      <path d="M200 278 C180 258 170 238 160 208" stroke-width="5" />
+      <path d="M210 172 C190 142 170 122 150 96" stroke-width="6" />
+      <path d="M245 218 C220 205 195 190 168 180" stroke-width="5" />
+      <path d="M450 242 C470 222 490 202 512 172" stroke-width="6" />
+      <path d="M400 278 C420 258 432 238 442 208" stroke-width="5" />
+      <path d="M390 172 C410 142 430 122 452 96" stroke-width="6" />
+      <path d="M355 218 C380 205 405 190 432 180" stroke-width="5" />
+      <path d="M300 150 C280 120 260 100 240 74" stroke-width="6" />
+      <path d="M300 140 C320 110 345 95 365 70" stroke-width="6" />
+      <path d="M300 200 C275 180 255 165 235 150" stroke-width="4" />
+      <path d="M300 200 C325 180 345 165 365 150" stroke-width="4" />
+    </g>
+  </svg>
+
+  <%# 投稿1件につき、葉っぱのかたまりを1つ %>
+  <% posts.each_with_index do |post, i| %>
+    <%
+      bonus = i >= full                                  # 11件目以降（満開のあと）
+      if bonus
+        # 樹冠まわりを黄金角ぐるぐるでばらけさせる。外側ほど多めに、上限なしで置ける
+        b   = i - full
+        rho = 0.4 + 0.6 * ((b * 0.618) % 1)
+        t   = b * 137.5 * Math::PI / 180
+        cx  = (300 + 210 * rho * Math.cos(t)).round
+        cy  = (185 + 105 * rho * Math.sin(t)).round
+      else
+        cx, cy = clusters[i]
+      end
+      count  = bonus ? 6 : 30                            # このかたまりの葉の枚数
+      radius = bonus ? 26 : 70                           # かたまりの広がり
+      reach  = bonus ? 30 : 55                           # ホバー表示を葉から離す距離
+      below  = (cy - reach) < 70                         # 上すぎる場所では吹き出しを下に出す
+    %>
+    <div class="tree__cluster<%= ' is-new' if post.created_at > new_after %>">
+      <% count.times do |k| %>
+        <%
+          a  = (k * 137.5 + i * 47) * Math::PI / 180     # 黄金角でばらけさせる（毎回同じ配置）
+          r  = radius * Math.sqrt((k + 0.5) / count)
+          lx = cx + r * Math.cos(a)
+          ly = cy + r * Math.sin(a) * 0.8
+          angle = (k * 53 + i * 29) % 120 - 60
+          scale = (0.8 + ((k * 7 + i * 3) % 5) * 0.1).round(1)
+          scale = (scale + 0.3).round(1) if bonus
+        %>
+        <span class="tree__leaf"
+              style="left: <%= (lx / 6.0).round(2) %>%; top: <%= (ly / 5.2).round(2) %>%;"
+              <%= 'tabindex=0'.html_safe if k.zero? %>>
+          <span class="tree__leaf-shape <%= bonus ? 'tone-new' : "tone-#{(k + i) % 4}" %>"
+                style="--angle: <%= angle %>deg; --s: <%= scale %>; --i: <%= k %>;"></span>
+        </span>
+      <% end %>
+
+      <span class="tree__tip<%= ' is-below' if below %>"
+            style="left: <%= (cx / 6.0).round(2) %>%; top: <%= ((below ? cy + reach : cy - reach) / 5.2).round(2) %>%;">
+        <strong><%= post.user.name %></strong>
+        <time><%= post.created_at.in_time_zone("Tokyo").strftime("%m/%d %H:%M") %></time>
+        <%= truncate(post.content, length: 60) %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .tree {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    aspect-ratio: 600 / 520;
+  }
+  .tree__scene {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  /* 投稿1件ぶんのかたまり（全体に重ねる。マウス操作は葉っぱだけが受ける） */
+  .tree__cluster {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .tree__cluster:hover,
+  .tree__cluster:focus-within {
+    z-index: 10;
+  }
+
+  .tree__leaf {
+    position: absolute;
+    display: block;
+    width: 3.6%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+    outline: none;
+  }
+  .tree__leaf-shape {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 100% 0 100%;
+    transform: rotate(var(--angle, 0deg)) scale(var(--s, 1));
+    transition: filter 0.2s ease;
+  }
+  /* 葉の色の種類（いいね連動は後で .tone-* の代わりに使える） */
+  .tone-0 { background: linear-gradient(135deg, #8fd694, #3fae6a); }
+  .tone-1 { background: linear-gradient(135deg, #a9dc7c, #52b04f); }
+  .tone-2 { background: linear-gradient(135deg, #7fcf9a, #2e9e64); }
+  .tone-3 { background: linear-gradient(135deg, #b6e08a, #6bb85a); }
+  .tone-new { background: linear-gradient(135deg, #e2f59a, #8fd14f); } /* 満開のあとに増える新芽 */
+
+  /* ホバー中は、その投稿の葉がまとめて少し明るくなる */
+  .tree__cluster:hover .tree__leaf-shape,
+  .tree__cluster:focus-within .tree__leaf-shape {
+    filter: brightness(1.12) saturate(1.1);
+  }
+
+  /* 新しい投稿の葉っぱが、順番にぽんぽんっと生える */
+  .tree__cluster.is-new .tree__leaf-shape {
+    animation: leaf-grow 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms);
+  }
+  @keyframes leaf-grow {
+    0%   { opacity: 0; transform: rotate(var(--angle, 0deg)) scale(0); }
+    60%  { opacity: 1; transform: rotate(var(--angle, 0deg)) scale(calc(var(--s, 1) * 1.4)); }
+    100% { opacity: 1; transform: rotate(var(--angle, 0deg)) scale(var(--s, 1)); }
+  }
+
+  /* ホバーで投稿がうっすら表示される */
+  .tree__tip {
+    position: absolute;
+    width: max-content;
+    max-width: 190px;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.55;
+    color: #1f3d2b;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(46, 158, 100, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(31, 61, 43, 0.1);
+    opacity: 0;
+    transform: translate(-50%, calc(-100% + 4px));
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .tree__tip.is-below {
+    transform: translate(-50%, -4px);
+  }
+  .tree__tip strong {
+    margin-right: 6px;
+    font-size: 11px;
+    color: #2e9e64;
+  }
+  .tree__tip time {
+    font-size: 10px;
+    color: #8a9a90;
+  }
+  .tree__cluster:hover .tree__tip,
+  .tree__cluster:focus-within .tree__tip {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+  .tree__cluster:hover .tree__tip.is-below,
+  .tree__cluster:focus-within .tree__tip.is-below {
+    transform: translate(-50%, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tree__cluster.is-new .tree__leaf-shape { animation: none; }
+  }
+</style>

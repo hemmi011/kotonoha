@@ -14,7 +14,7 @@
 
         <%# 木のイラスト（画像は app/assets/images/tree.png に置く） %>
         <div class="mt-4 flex justify-center bg-gradient-to-b from-sky-50 to-emerald-50 rounded-xl py-6">
-        <%= render partial: "posts/post", collection: @event.posts %>
+          <%= render "events/tree", posts: @event.posts.includes(:user).order(:created_at, :id) %>
         </div>
 
         <%# 投稿数と成長度 %>
