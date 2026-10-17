@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2026_10_10_024020) do
-  create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "events", force: :cascade do |t|
     t.string "title", null: false
     t.string "body", null: false
     t.datetime "start_at"
@@ -21,7 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_024020) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "event_id"
     t.text "content"
@@ -31,7 +34,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_024020) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "name", null: false

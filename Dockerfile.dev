@@ -14,7 +14,7 @@ RUN apt-get update -qq \
 && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 # 必要なパッケージのインストール
-RUN apt-get update -qq && apt-get install -y build-essential nodejs yarn
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs yarn
 
 # アプリケーションディレクトリの作成
 RUN mkdir /kotonoha
