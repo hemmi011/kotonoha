@@ -166,36 +166,6 @@
     <!-- 右側 -->
     <div class="ml-auto flex items-center gap-4">
 
-      <!-- 検索 -->
-      <button
-        type="button"
-        class="flex h-10 w-10 items-center justify-center rounded-full text-[#155b42] transition hover:bg-[#edf5ee]"
-        aria-label="検索"
-      >
-        <svg
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="11"
-            cy="11"
-            r="6.5"
-            stroke="currentColor"
-            stroke-width="2"
-          />
-          <path
-            d="M16 16L21 21"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
-      </button>
-
-
       <!-- ログイン -->
       <%= link_to 'ログアウト', logout_path, class:"flex h-11 items-center rounded-full border border-[#155b42] px-7 text-sm font-semibold tracking-wide text-[#155b42] transition hover:bg-[#edf5ee]", data: { turbo_method: :delete } %>
 
