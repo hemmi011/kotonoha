@@ -1,183 +1,176 @@
-<header class="relative h-[90px] border border-[#dce9df] bg-[#fcfdf9] shadow-sm overflow-hidden">
+
+<header class="relative z-20 border border-[#dce9df] bg-[#fcfdf9] shadow-sm">
 
   <!-- 左端の葉っぱ装飾 -->
-  <div class="pointer-events-none absolute -left-2 -bottom-1 opacity-60">
-    <svg
-      width="75"
-      height="85"
-      viewBox="0 0 75 85"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M29 84C31 66 32 49 27 33"
-        stroke="#a9d0ae"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-      <path
-        d="M28 50C15 47 6 39 4 28C15 28 25 35 28 50Z"
-        fill="#cfe5cf"
-      />
-      <path
-        d="M30 34C27 20 31 9 40 2C46 13 43 25 30 34Z"
-        fill="#b9d9bb"
-      />
-      <path
-        d="M30 65C17 65 9 59 6 50C17 49 26 54 30 65Z"
-        fill="#d9ebd8"
-      />
+  <div class="pointer-events-none absolute -bottom-1 -left-2 opacity-60">
+    <svg width="75" height="85" viewBox="0 0 75 85" fill="none">
+      <path d="M29 84C31 66 32 49 27 33" stroke="#a9d0ae" stroke-width="2" stroke-linecap="round"/>
+      <path d="M28 50C15 47 6 39 4 28C15 28 25 35 28 50Z" fill="#cfe5cf"/>
+      <path d="M30 34C27 20 31 9 40 2C46 13 43 25 30 34Z" fill="#b9d9bb"/>
+      <path d="M30 65C17 65 9 59 6 50C17 49 26 54 30 65Z" fill="#d9ebd8"/>
     </svg>
   </div>
 
   <!-- 右端の葉っぱ装飾 -->
-  <div class="pointer-events-none absolute -right-2 -bottom-1 rotate-180 opacity-60">
-    <svg
-      width="75"
-      height="85"
-      viewBox="0 0 75 85"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M29 84C31 66 32 49 27 33"
-        stroke="#a9d0ae"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-      <path
-        d="M28 50C15 47 6 39 4 28C15 28 25 35 28 50Z"
-        fill="#cfe5cf"
-      />
-      <path
-        d="M30 34C27 20 31 9 40 2C46 13 43 25 30 34Z"
-        fill="#b9d9bb"
-      />
-      <path
-        d="M30 65C17 65 9 59 6 50C17 49 26 54 30 65Z"
-        fill="#d9ebd8"
-      />
+  <div class="pointer-events-none absolute -bottom-1 -right-2 rotate-180 opacity-60">
+    <svg width="75" height="85" viewBox="0 0 75 85" fill="none">
+      <path d="M29 84C31 66 32 49 27 33" stroke="#a9d0ae" stroke-width="2" stroke-linecap="round"/>
+      <path d="M28 50C15 47 6 39 4 28C15 28 25 35 28 50Z" fill="#cfe5cf"/>
+      <path d="M30 34C27 20 31 9 40 2C46 13 43 25 30 34Z" fill="#b9d9bb"/>
+      <path d="M30 65C17 65 9 59 6 50C17 49 26 54 30 65Z" fill="#d9ebd8"/>
     </svg>
   </div>
 
-
   <!-- Header本体 -->
-  <div class="relative z-10 mx-auto flex h-full max-w-7xl items-center justify-between px-8">
+  <div
+    data-controller="mobile-menu"
+    class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+  >
 
-    <!-- Logo -->
-    <div class="flex items-center gap-3">
+    <!-- 上段：ロゴ・PCナビ・メニューボタン -->
+    <div class="flex h-[72px] items-center justify-between md:h-[90px]">
 
-      <!-- 木のロゴ -->
-      <div class="flex h-12 w-12 items-center justify-center">
-        <svg
-          width="46"
-          height="46"
-          viewBox="0 0 46 46"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <!-- 幹 -->
-          <path
-            d="M23 43V25"
-            stroke="#795c3f"
-            stroke-width="3"
-            stroke-linecap="round"
-          />
+      <!-- Logo -->
+      <%= link_to root_path,
+        class: "flex shrink-0 items-center gap-2 sm:gap-3" do %>
 
-          <!-- 枝 -->
-          <path
-            d="M23 31L15 24"
-            stroke="#795c3f"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <path
-            d="M23 28L31 21"
-            stroke="#795c3f"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
+        <!-- 木のロゴ -->
+        <div class="flex h-10 w-10 items-center justify-center sm:h-12 sm:w-12">
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+            <path d="M23 43V25" stroke="#795c3f" stroke-width="3" stroke-linecap="round"/>
+            <path d="M23 31L15 24" stroke="#795c3f" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M23 28L31 21" stroke="#795c3f" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="14" cy="21" rx="5" ry="8" fill="#5c9b62" transform="rotate(-40 14 21)"/>
+            <ellipse cx="31" cy="18" rx="5" ry="8" fill="#6eaa70" transform="rotate(35 31 18)"/>
+            <ellipse cx="23" cy="13" rx="5" ry="8" fill="#80b878"/>
+            <ellipse cx="15" cy="11" rx="4" ry="6" fill="#4e9259" transform="rotate(-35 15 11)"/>
+            <ellipse cx="32" cy="8" rx="4" ry="6" fill="#76ad70" transform="rotate(35 32 8)"/>
+          </svg>
+        </div>
 
-          <!-- 葉 -->
-          <ellipse cx="14" cy="21" rx="5" ry="8" fill="#5c9b62" transform="rotate(-40 14 21)"/>
-          <ellipse cx="31" cy="18" rx="5" ry="8" fill="#6eaa70" transform="rotate(35 31 18)"/>
-          <ellipse cx="23" cy="13" rx="5" ry="8" fill="#80b878"/>
-          <ellipse cx="15" cy="11" rx="4" ry="6" fill="#4e9259" transform="rotate(-35 15 11)"/>
-          <ellipse cx="32" cy="8" rx="4" ry="6" fill="#76ad70" transform="rotate(35 32 8)"/>
-        </svg>
+        <span class="text-[23px] font-semibold tracking-[0.06em] text-[#185b40] sm:text-[28px] sm:tracking-[0.08em]">
+          kotonoha
+        </span>
+      <% end %>
+
+      <!-- PC・タブレット用ナビゲーション -->
+      <nav class="hidden items-center gap-4 md:flex lg:gap-7">
+
+        <%= link_to events_path,
+          class: "flex items-center gap-2 whitespace-nowrap text-sm font-medium tracking-wide text-[#2f4f40] transition hover:text-[#17613f] lg:text-[15px]" do %>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M20 4C11 4 5 8 5 15C5 17.8 7.2 20 10 20C17 20 20 13 20 4Z" fill="#4d9960"/>
+            <path d="M5 20C7 14 11 11 16 8" stroke="#2f7046" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          イベント一覧
+        <% end %>
+
+        <%= link_to new_event_path,
+          class: "flex items-center gap-2 whitespace-nowrap text-sm font-medium tracking-wide text-[#2f4f40] transition hover:text-[#17613f] lg:text-[15px]" do %>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M20 4C11 4 5 8 5 15C5 17.8 7.2 20 10 20C17 20 20 13 20 4Z" fill="#4d9960"/>
+            <path d="M5 20C7 14 11 11 16 8" stroke="#2f7046" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          イベント作成
+        <% end %>
+
+      </nav>
+
+      <!-- PC用：ログアウト・ユーザー名 -->
+      <div class="hidden items-center gap-3 lg:flex">
+
+        <%= link_to "ログアウト", logout_path,
+          class: "flex h-11 items-center whitespace-nowrap rounded-full border border-[#155b42] px-5 text-sm font-semibold tracking-wide text-[#155b42] transition hover:bg-[#edf5ee]",
+          data: { turbo_method: :delete } %>
+
+        <div class="flex items-center rounded-full bg-[#f1f8f2] px-4 py-2.5">
+          <span class="max-w-[160px] truncate text-sm font-semibold tracking-wide text-[#2f6b4a]">
+            <%= current_user.name %>さん
+          </span>
+        </div>
+
       </div>
 
-      <!-- サイト名 -->
-      <div class="text-[28px] font-semibold tracking-[0.08em] text-[#185b40]">
-        <%= link_to 'kotonoha', root_path %>
+      <!-- スマホ・タブレット用メニューボタン -->
+      <button
+        type="button"
+        data-mobile-menu-target="button"
+        data-action="click->mobile-menu#toggle"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#dce9df] text-[#205c45] transition hover:bg-[#edf5ee] lg:hidden"
+      >
+        <!-- 三本線 -->
+        <svg
+          data-mobile-menu-target="openIcon"
+          class="h-6 w-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+
+        <!-- 閉じる -->
+        <svg
+          data-mobile-menu-target="closeIcon"
+          class="hidden h-6 w-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- スマホ・タブレット用メニュー -->
+    <nav
+      id="mobile-menu"
+      data-mobile-menu-target="menu"
+      class="hidden border-t border-[#e5eee9] py-4 lg:hidden"
+    >
+
+      <!-- ユーザー情報 -->
+      <div class="mb-3 rounded-xl bg-[#f1f8f2] px-4 py-3">
+        <p class="text-xs text-[#668572]">ログイン中</p>
+        <p class="mt-1 truncate text-sm font-semibold text-[#2f6b4a]">
+          <%= current_user.name %>さん
+        </p>
       </div>
-    </div>
 
+      <div class="flex flex-col gap-1">
 
-    <!-- イベント一覧 -->
-    <div class="ml-16 flex items-center">
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M20 4C11 4 5 8 5 15C5 17.8 7.2 20 10 20C17 20 20 13 20 4Z"
-            fill="#4d9960"
-          />
-          <path
-            d="M5 20C7 14 11 11 16 8"
-            stroke="#2f7046"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          />
-        </svg>
-         <%= link_to "イベント一覧", events_path, class: "flex items-center gap-2 text-[15px] font-medium tracking-wide text-[#2f4f40] transition hover:text-[#17613f]" %>
-        <!-- 葉っぱアイコン -->
-    </div>
+        <%= link_to events_path,
+          class: "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-[#2f4f40] transition hover:bg-[#edf5ee]" do %>
+          <span class="text-lg text-[#4d9960]">🌿</span>
+          イベント一覧
+        <% end %>
 
-    <!-- イベント作成 -->
-     <div class="ml-16 flex items-center">
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M20 4C11 4 5 8 5 15C5 17.8 7.2 20 10 20C17 20 20 13 20 4Z"
-            fill="#4d9960"
-          />
-          <path
-            d="M5 20C7 14 11 11 16 8"
-            stroke="#2f7046"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          />
-        </svg>
-         <%= link_to "イベント作成", new_event_path, class: "flex items-center gap-2 text-[15px] font-medium tracking-wide text-[#2f4f40] transition hover:text-[#17613f]" %>
-        <!-- 葉っぱアイコン -->
-    </div>
+        <%= link_to new_event_path,
+          class: "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-[#2f4f40] transition hover:bg-[#edf5ee]" do %>
+          <span class="text-lg text-[#4d9960]">🌱</span>
+          イベント作成
+        <% end %>
 
+        <div class="my-2 border-t border-[#e5eee9]"></div>
 
-    <!-- 右側 -->
-    <div class="ml-auto flex items-center gap-4">
+        <%= link_to logout_path,
+          class: "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-[#155b42] transition hover:bg-[#edf5ee]",
+          data: { turbo_method: :delete } do %>
+          <span class="text-lg">↪</span>
+          ログアウト
+        <% end %>
 
-      <!-- ログイン -->
-      <%= link_to 'ログアウト', logout_path, class:"flex h-11 items-center rounded-full border border-[#155b42] px-7 text-sm font-semibold tracking-wide text-[#155b42] transition hover:bg-[#edf5ee]", data: { turbo_method: :delete } %>
-
-     <!-- ユーザー -->
-    <div class="flex items-center rounded-full bg-[#f1f8f2] px-5 py-2.5">
-      <span class="text-sm font-semibold tracking-wide text-[#2f6b4a]">
-        <%= current_user.name %>さん
-      </span>
-    </div>
-      
-
-    </div>
+      </div>
+    </nav>
 
   </div>
 </header>
+
